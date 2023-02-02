@@ -1,6 +1,7 @@
 import React from 'react'
 import { SocialIcon } from 'react-social-icons'
 import { motion } from 'framer-motion'
+import Link from 'next/link'
 type Props = {}
 
 function Header({}: Props) {
@@ -14,11 +15,12 @@ function Header({}: Props) {
             <SocialIcon fgColor='#9CA4B2' bgColor='transparent' url="https://www.instagram.com/cool_sumeet_/?hl=en/"className="hover:opacity-80"/>
 
         </motion.div>
-
+      <Link href="#contact">
         <motion.div initial={{x:500,opacity:0,scale:0.5}} animate={{x:0,opacity:1,scale:1}} transition={{ duration:1,}}  className='flex flex-row items-center cursor-pointer'>
             <SocialIcon fgColor='#9CA4B2' bgColor='transparent' className='cursor-pointer hover:opacity-80' network='email' />
             <p className='uppercase hidden md:flex text-sm text-[#9CA4B2] hover:opacity-80' >Get In Touch</p>
         </motion.div>
+        </Link>
     </header>
   )
 }
