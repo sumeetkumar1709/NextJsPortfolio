@@ -1,10 +1,13 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import Skill from './Skill'
+import { Skill as SkillType } from '@/typings'
 
-type Props = {}
+type Props = {
+  skills: SkillType[]
+}
 
-function Skills({}: Props) {
+function Skills({skills}: Props) {
   return (
     <motion.div
     initial={{opacity:0}}
@@ -16,20 +19,10 @@ function Skills({}: Props) {
         <h3 className='absolute top-36 uppercase tracking-[3px] text-[#7CC7C2]/60 text-sm'>Hover over a skill for current proficiency</h3>
 
         <div className='grid grid-cols-4 gap-5 top-[10%] relative'>
-            <Skill directionLeft={true}/>
-            <Skill directionLeft={false}/>
-            <Skill directionLeft={true}/>
-            <Skill directionLeft={true}/>
-            <Skill directionLeft={true}/>
-            <Skill directionLeft={true}/>
-            <Skill directionLeft={true}/>
-            <Skill directionLeft={true}/>
-            <Skill directionLeft={true}/>
-            <Skill directionLeft={true}/>
-            <Skill directionLeft={true}/>
-            <Skill directionLeft={true}/>
-            <Skill directionLeft={true}/>
-            <Skill directionLeft={true}/>
+            {skills?.map(skill=>(
+              <Skill key={skill._id} directionLeft={Math.floor(Math.random()*100)%2===0?true:false} skill={skill}/>
+            ))}
+        
         </div>
     </motion.div>
   )

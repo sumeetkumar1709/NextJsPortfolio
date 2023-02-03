@@ -6,8 +6,22 @@ import Experience from '@/components/Experience'
 import Skills from '@/components/Skills'
 import Projects from '@/components/Projects'
 import Contact from '@/components/Contact'
+import { PageInfo,Skill,Project } from '@/typings'
+import { GetStaticProps } from 'next'
+import { fetchPageInfo } from '@/utils/fetchPageInfo'
+import { fetchSkills } from '@/utils/fetchSkills'
+import { fetchProjects } from '@/utils/fetchProjects'
 
-export default function Home() {
+
+type Props={
+  pageInfo:PageInfo;
+  skills:Skill[];
+  projects:Project[];
+}
+
+
+
+export default function Home({pageInfo,projects,skills}:Props) {
 
   return (
     <div className='bg-gray-900 text-white h-screen snap-y  snap-mandatory overflow-scroll z-0 overflow-x-hidden overflow-y-scroll scrollbar scrollbar-track-[#fff]/20 scrollbar-thumb-[#7CC7C2]/80'>
@@ -20,12 +34,12 @@ export default function Home() {
       
       {/* Banner */}
       <section id="hero" className='snap-center'>
-        <Hero />
+        <Hero pageInfo={pageInfo}/>
       </section>
 
       {/* About */}
       <section id="about" className='snap-center'>
-        <About/>
+        <About pageInfo={pageInfo}/>
       </section>
 
       {/* Experience */}
@@ -35,12 +49,12 @@ export default function Home() {
       
       {/* Skills */}
       <section id="skills" className='snap-start'>
-        <Skills/>
+        <Skills skills={skills}/>
       </section>
 
       {/* Projects */}
       <section id="projects" className='snap-start'>
-        <Projects/>
+        <Projects projects={projects}/>
       </section>
 
       {/* Contact Me */}
@@ -50,4 +64,20 @@ export default function Home() {
 
     </div>
   )
+};
+
+export const getStaticProps :GetStaticProps<Props> = async()=>{
+    const pageInfo:PageInfo = await fetchPageInfo();
+    const skills:Skill[] = await fetchSkills();
+    const projects:Project[] = await fetchProjects();
+
+
+    return {
+      props:{
+        pageInfo,
+        skills,
+        projects,
+      },
+      revalidate:10,
+    }
 }
