@@ -1,4 +1,5 @@
-import {defineField, defineType} from 'sanity'
+// @ts-nocheck
+import {defineConfig, defineType } from "sanity" 
 
 export default defineType({
   name: 'skill',

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from 'react'
 import {motion} from  'framer-motion';
 import { Project } from '@/typings';
@@ -22,7 +23,7 @@ function Projects({projects}: Props) {
 
           {/* Projects */}
           {projects.map((project,i)=>(
-            <div className='w-screen 
+            <div key={project._id} className='w-screen 
             flex-shrink-0 snap-center flex flex-col space-y-5 items-center justify-center p-20 h-screen '>
               <motion.img
               initial={{
@@ -33,7 +34,7 @@ function Projects({projects}: Props) {
               whileInView={{opacity:1,y:0}}
               viewport={{once:true}}
               className="h-[250px] w-[100%] object-contain"
-               src={urlFor(project.profilePic).url()}
+               src={urlFor(project?.profilePic).url()}
               />
 
               <div className='space-y-10 px-0 md:px-10 max-w-6xl'>

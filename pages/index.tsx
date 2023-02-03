@@ -26,7 +26,8 @@ export default function Home({pageInfo,projects,skills}:Props) {
   return (
     <div className='bg-gray-900 text-white h-screen snap-y  snap-mandatory overflow-scroll z-0 overflow-x-hidden overflow-y-scroll scrollbar scrollbar-track-[#fff]/20 scrollbar-thumb-[#7CC7C2]/80'>
       <Head>
-        <title>Portfolio</title>
+        <title>{pageInfo?.name
+        } | Portfolio</title>
       </Head>
 
       {/*Header */}
